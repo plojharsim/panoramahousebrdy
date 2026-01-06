@@ -1,13 +1,35 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Helmet } from "react-helmet-async";
+import Layout from "@/components/layout/Layout";
+import HeroSection from "@/components/home/HeroSection";
+import AboutSection from "@/components/home/AboutSection";
+import GallerySection from "@/components/home/GallerySection";
+import LocationSection from "@/components/home/LocationSection";
+import BookingCTA from "@/components/home/BookingCTA";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <>
+      <Helmet>
+        <title>Panorama House Brdy | Ubytování s výhledem v Brdech</title>
+        <meta
+          name="description"
+          content="Panorama House Brdy - útulné soukromé ubytování s ohromujícím panoramatickým výhledem na údolí. 10 minut od Příbrami, v srdci CHKO Brdy. Rezervujte nyní!"
+        />
+        <meta
+          name="keywords"
+          content="ubytování Brdy, chata Brdy, panoramatický výhled, ubytování Příbram, dovolená v přírodě, CHKO Brdy"
+        />
+        <link rel="canonical" href="https://panoramahouse.cz" />
+      </Helmet>
+
+      <Layout>
+        <HeroSection />
+        <AboutSection />
+        <GallerySection />
+        <LocationSection />
+        <BookingCTA />
+      </Layout>
+    </>
   );
 };
 
