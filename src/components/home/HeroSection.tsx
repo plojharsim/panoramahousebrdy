@@ -59,14 +59,16 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <button
-        onClick={scrollToContent}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-primary-foreground/70 hover:text-primary-foreground transition-colors animate-float"
-        aria-label="Scroll down"
-      >
-        <ChevronDown className="w-10 h-10" />
-      </button>
+      {/* Scroll indicator - fixed positioning wrapper to prevent transform conflicts */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+        <button
+          onClick={scrollToContent}
+          className="text-primary-foreground/70 hover:text-primary-foreground transition-colors animate-float"
+          aria-label="Scroll down"
+        >
+          <ChevronDown className="w-12 h-12" />
+        </button>
+      </div>
     </section>
   );
 };
