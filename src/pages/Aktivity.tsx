@@ -183,100 +183,99 @@ const Aktivity = () => {
           </div>
         </section>
 
-        {/* Content */}
-        <section className="py-20 md:py-28 bg-background">
+        {/* Filters Section */}
+        <section className="py-12 bg-muted/30 border-b border-border">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="grid lg:grid-cols-4 gap-12">
-              {/* Sidebar Filters */}
-              <aside className="lg:col-span-1">
-                <div className="lg:sticky lg:top-24 lg:max-h-[calc(100vh-120px)] lg:overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-muted">
-                  <div className="space-y-8 pb-10">
-                    <div className="space-y-4">
-                      <h2 className="font-display text-2xl font-bold text-foreground">Vyhledávání</h2>
-                      <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                        <Input 
-                          placeholder="Hledat aktivitu..." 
-                          className="pl-10"
-                          value={searchQuery}
-                          onChange={(e) => setSearchQuery(e.target.value)}
-                        />
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-4">
-                      <h2 className="font-display text-2xl font-bold text-foreground">Filtrování</h2>
-                      <ActivityFilter 
-                        activeType={activeType} 
-                        setActiveType={setActiveType}
-                        activeWeather={activeWeather}
-                        setActiveWeather={setActiveWeather}
-                        activeDuration={activeDuration}
-                        setActiveDuration={setActiveDuration}
-                      />
-                    </div>
+            <div className="max-w-6xl mx-auto space-y-8">
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div className="w-full md:max-w-md space-y-3">
+                  <h2 className="font-display text-2xl font-bold text-foreground flex items-center gap-2">
+                    <Search className="w-5 h-5 text-primary" /> Vyhledávání
+                  </h2>
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Input 
+                      placeholder="Hledat aktivitu, místo nebo zážitek..." 
+                      className="pl-10 h-12 bg-background shadow-soft border-border/50"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                    />
                   </div>
                 </div>
-              </aside>
-
-              {/* Activities Grid */}
-              <div className="lg:col-span-3">
-                <div className="flex justify-between items-center mb-8">
-                  <p className="text-muted-foreground">
-                    Nalezeno <span className="font-bold text-foreground">{filteredActivities.length}</span> aktivit
-                  </p>
-                  {isFiltering && (
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
-                      onClick={resetFilters}
-                      className="text-primary hover:text-primary-light"
-                    >
-                      Zrušit vše
-                    </Button>
-                  )}
-                </div>
-
-                {filteredActivities.length > 0 ? (
-                  <div className="grid grid-cols-1 gap-6 md:gap-8">
-                    {filteredActivities.map((activity, index) => (
-                      <ActivityCard 
-                        key={activity.id} 
-                        activity={activity} 
-                        index={index} 
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <div className="text-center py-20 bg-muted/30 rounded-3xl border-2 border-dashed border-border">
-                    <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
-                      <SearchX className="w-8 h-8 text-muted-foreground" />
-                    </div>
-                    <h3 className="text-xl font-display font-bold mb-2">Žádné aktivity nenalezeny</h3>
-                    <p className="text-muted-foreground mb-6">Zkuste změnit hledaný výraz nebo filtry.</p>
-                    <Button onClick={resetFilters}>
-                      Zobrazit vše
-                    </Button>
-                  </div>
+                
+                {isFiltering && (
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    onClick={resetFilters}
+                    className="text-primary hover:text-primary-light self-start md:self-auto"
+                  >
+                    Zrušit všechny filtry
+                  </Button>
                 )}
               </div>
+
+              <ActivityFilter 
+                activeType={activeType} 
+                setActiveType={setActiveType}
+                activeWeather={activeWeather}
+                setActiveWeather={setActiveWeather}
+                activeDuration={activeDuration}
+                setActiveDuration={setActiveDuration}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Results List */}
+        <section className="py-16 md:py-24 bg-background">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="max-w-5xl mx-auto">
+              <div className="mb-8">
+                <p className="text-muted-foreground text-lg">
+                  Nalezeno <span className="font-bold text-primary">{filteredActivities.length}</span> {filteredActivities.length === 1 ? 'aktivita' : filteredActivities.length < 5 && filteredActivities.length > 0 ? 'aktivity' : 'aktivit'}
+                </p>
+              </div>
+
+              {filteredActivities.length > 0 ? (
+                <div className="grid grid-cols-1 gap-8 md:gap-10">
+                  {filteredActivities.map((activity, index) => (
+                    <ActivityCard 
+                      key={activity.id} 
+                      activity={activity} 
+                      index={index} 
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-20 bg-muted/20 rounded-3xl border-2 border-dashed border-border/50">
+                  <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
+                    <SearchX className="w-10 h-10 text-muted-foreground" />
+                  </div>
+                  <h3 className="text-2xl font-display font-bold mb-3">Žádné aktivity neodpovídají výběru</h3>
+                  <p className="text-muted-foreground mb-8 max-w-md mx-auto">Zkuste upravit filtry nebo hledaný výraz, abyste našli to pravé pro váš výlet.</p>
+                  <Button onClick={resetFilters} size="lg" variant="nature">
+                    Zobrazit všechny aktivity
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="py-16 md:py-20 bg-secondary">
+        <section className="py-20 bg-secondary">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
+              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
                 Chcete vědět víc?
               </h2>
-              <p className="text-muted-foreground text-lg mb-8">
+              <p className="text-muted-foreground text-xl mb-10">
                 Při příjezdu vám rádi poradíme s dalšími tipy na míru vašim zájmům. Brdy známe jako své boty!
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/">
-                  <Button variant="outline" size="lg">
+                  <Button variant="outline" size="xl">
                     Zpět na úvod
                   </Button>
                 </Link>
@@ -285,7 +284,7 @@ const Aktivity = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button variant="accent" size="lg">
+                  <Button variant="accent" size="xl">
                     Rezervovat pobyt
                   </Button>
                 </a>
