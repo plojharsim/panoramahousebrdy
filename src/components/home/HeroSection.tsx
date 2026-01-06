@@ -60,7 +60,7 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll indicator - fixed positioning wrapper to prevent transform conflicts */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
         <button
           onClick={scrollToContent}
           className="text-primary-foreground/70 hover:text-primary-foreground transition-colors animate-float"
