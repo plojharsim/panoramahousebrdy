@@ -44,7 +44,7 @@ const Header = () => {
             <span className={`font-display text-xl md:text-2xl font-semibold transition-colors duration-300 ${
               isScrolled ? "text-foreground" : "text-primary-foreground"
             }`}>
-              Panorama House
+              Panorama House Brdy
             </span>
           </Link>
 

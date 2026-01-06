@@ -11,7 +11,7 @@ const Footer = () => {
             <Link to="/" className="flex items-center gap-2 mb-4 justify-center md:justify-start">
               <Mountain className="w-8 h-8" />
               <span className="font-display text-2xl font-semibold">
-                Panorama House
+                Panorama House Brdy
               </span>
             </Link>
             <p className="text-primary-foreground/80 leading-relaxed text-center md:text-left">
