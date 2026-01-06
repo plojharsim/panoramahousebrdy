@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { Mountain, MapPin, Mail, Phone } from "lucide-react";
 
 const Footer = () => {
+  const googleMapsLink = "https://www.google.com/maps/place/Panorama+house+Brdy/@49.7105814,13.9486556,13z/data=!4m9!3m8!1s0x470b0f7517921271:0xfac34c8902a25ecd!5m2!4m1!1i2!8m2!3d49.7047269!4d13.9617081!16s%2Fg%2F11rc2hpfl0";
+
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 md:px-8 py-12 md:py-16">
@@ -61,9 +63,14 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start gap-3 justify-center md:justify-start">
                 <MapPin className="w-5 h-5 mt-0.5 text-sunrise flex-shrink-0" />
-                <span className="text-primary-foreground/80 text-center md:text-left">
+                <a
+                  href={googleMapsLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary-foreground/80 hover:text-sunrise transition-colors text-center md:text-left"
+                >
                   Oseč 58, 261 01 Příbram
-                </span>
+                </a>
               </li>
               <li className="flex items-center gap-3 justify-center md:justify-start">
                 <Mail className="w-5 h-5 text-sunrise flex-shrink-0" />
