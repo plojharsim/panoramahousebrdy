@@ -113,6 +113,7 @@ const activities: Activity[] = [
 const Aktivity = () => {
   const [activeType, setActiveType] = useState("all");
   const [activeWeather, setActiveWeather] = useState("all");
+  const [activeDuration, setActiveDuration] = useState("all");
 
   const filteredActivities = useMemo(() => {
     return activities.filter((activity) => {
@@ -121,10 +122,19 @@ const Aktivity = () => {
         activeWeather === "all" || 
         (activeWeather === "sunny" && activity.weather === "sunny") ||
         (activeWeather === "rainy" && activity.weather === "both");
+      const matchDuration = activeDuration === "all" || activity.duration === activeDuration;
       
-      return matchType && matchWeather;
+      return matchType && matchWeather && matchDuration;
     });
-  }, [activeType, activeWeather]);
+  }, [activeType, activeWeather, activeDuration]);
+
+  const resetFilters = () => {
+    setActiveType("all");
+    setActiveWeather("all");
+    setActiveDuration("all");
+  };
+
+  const isFiltering = activeType !== "all" || activeWeather !== "all" || activeDuration !== "all";
 
   return (
     <>
@@ -176,6 +186,8 @@ const Aktivity = () => {
                     setActiveType={setActiveType}
                     activeWeather={activeWeather}
                     setActiveWeather={setActiveWeather}
+                    activeDuration={activeDuration}
+                    setActiveDuration={setActiveDuration}
                   />
                 </div>
               </aside>
@@ -186,11 +198,11 @@ const Aktivity = () => {
                   <p className="text-muted-foreground">
                     Nalezeno <span className="font-bold text-foreground">{filteredActivities.length}</span> aktivit
                   </p>
-                  {(activeType !== "all" || activeWeather !== "all") && (
+                  {isFiltering && (
                     <Button 
                       variant="ghost" 
                       size="sm" 
-                      onClick={() => { setActiveType("all"); setActiveWeather("all"); }}
+                      onClick={resetFilters}
                       className="text-primary hover:text-primary-light"
                     >
                       Zrušit filtry
@@ -215,7 +227,7 @@ const Aktivity = () => {
                     </div>
                     <h3 className="text-xl font-display font-bold mb-2">Žádné aktivity nenalezeny</h3>
                     <p className="text-muted-foreground mb-6">Zkuste změnit nastavení filtrů pro více výsledků.</p>
-                    <Button onClick={() => { setActiveType("all"); setActiveWeather("all"); }}>
+                    <Button onClick={resetFilters}>
                       Zobrazit vše
                     </Button>
                   </div>

@@ -2,14 +2,15 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { CloudRain, Sun, Clock, Map, Bike, Castle, Coffee } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { CloudRain, Sun, Clock, Map, Bike, Castle, Coffee, Timer } from "lucide-react";
 
 interface FilterProps {
   activeType: string;
   setActiveType: (val: string) => void;
   activeWeather: string;
   setActiveWeather: (val: string) => void;
+  activeDuration: string;
+  setActiveDuration: (val: string) => void;
 }
 
 const ActivityFilter = ({
@@ -17,6 +18,8 @@ const ActivityFilter = ({
   setActiveType,
   activeWeather,
   setActiveWeather,
+  activeDuration,
+  setActiveDuration,
 }: FilterProps) => {
   const types = [
     { id: "all", label: "Vše", icon: Map },
@@ -30,6 +33,13 @@ const ActivityFilter = ({
     { id: "all", label: "Libovolné", icon: Sun },
     { id: "sunny", label: "Jen slunečno", icon: Sun },
     { id: "rainy", label: "Vhodné i v dešti", icon: CloudRain },
+  ];
+
+  const durations = [
+    { id: "all", label: "Jakákoliv", icon: Timer },
+    { id: "short", label: "Do 2 hod", icon: Clock },
+    { id: "medium", label: "2-5 hod", icon: Clock },
+    { id: "long", label: "Celodenní", icon: Clock },
   ];
 
   return (
@@ -49,6 +59,26 @@ const ActivityFilter = ({
             >
               <type.icon className="w-4 h-4 mr-2" />
               {type.label}
+            </Button>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex flex-col space-y-4">
+        <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
+          <Timer className="w-4 h-4" /> Časová náročnost
+        </h3>
+        <div className="flex flex-wrap gap-2">
+          {durations.map((dur) => (
+            <Button
+              key={dur.id}
+              variant={activeDuration === dur.id ? "nature" : "outline"}
+              size="sm"
+              onClick={() => setActiveDuration(dur.id)}
+              className="rounded-full"
+            >
+              <dur.icon className="w-4 h-4 mr-2" />
+              {dur.label}
             </Button>
           ))}
         </div>
