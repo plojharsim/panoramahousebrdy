@@ -14,7 +14,7 @@ const galleryItems = [
   { id: 3, image: bedroom, label: "Ložnice" },
   { id: 4, image: bathroom, label: "Koupelna" },
   { id: 5, image: terraceBbq, label: "Venkovní gril" },
-  { id: 6, image: gardenKids, label: "Dětské pískoviště a hřiště" },
+  { id: 6, image: gardenKids, label: "Dětské pískoviště" },
 ];
 
 const GallerySection = () => {
