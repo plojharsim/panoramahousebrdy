@@ -5,7 +5,6 @@ import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import {
-  Mountain,
   Bike,
   TreePine,
   Camera,
@@ -178,13 +177,6 @@ const Aktivity = () => {
                     activeWeather={activeWeather}
                     setActiveWeather={setActiveWeather}
                   />
-                  
-                  <div className="hidden lg:block p-6 rounded-2xl bg-secondary border border-border mt-8">
-                    <h4 className="font-display text-lg font-bold mb-3">Náš tip</h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      Po náročném výšlapu na Tok doporučujeme návštěvu Pivovaru Podlesí pro doplnění sil!
-                    </p>
-                  </div>
                 </div>
               </aside>
 
