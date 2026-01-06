@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
+import heroPanorama from "@/assets/hero-panorama.png";
 
 const HeroSection = () => {
   const scrollToContent = () => {
@@ -9,10 +10,13 @@ const HeroSection = () => {
 
   return (
     <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-      {/* Background placeholder - replace with actual panorama image */}
-      <div className="absolute inset-0 bg-gradient-to-br from-forest via-forest-light to-mountain">
-        {/* Image placeholder - will be replaced with actual photo */}
-        <div className="absolute inset-0 bg-[url('/placeholder.svg')] bg-cover bg-center opacity-30" />
+      {/* Background image - panoramic view */}
+      <div className="absolute inset-0">
+        <img
+          src={heroPanorama}
+          alt="Panoramatický výhled na údolí z Panorama House Brdy"
+          className="w-full h-full object-cover"
+        />
       </div>
 
       {/* Overlay */}
