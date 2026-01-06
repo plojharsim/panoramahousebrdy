@@ -30,8 +30,8 @@ const LocationSection = () => {
               přesto daleko od hluku a shonu velkoměsta.
             </p>
 
-            <div className="space-y-6 mb-8">
-              <div className="flex items-start gap-4 flex-col sm:flex-row text-center sm:text-left">
+            <div className="space-y-6 mb-8 flex flex-col items-center lg:items-start">
+              <div className="flex items-center lg:items-start gap-4 flex-col lg:flex-row text-center lg:text-left">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <Car className="w-6 h-6 text-primary" />
                 </div>
@@ -45,7 +45,7 @@ const LocationSection = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 flex-col sm:flex-row text-center sm:text-left">
+              <div className="flex items-center lg:items-start gap-4 flex-col lg:flex-row text-center lg:text-left">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <Clock className="w-6 h-6 text-primary" />
                 </div>
@@ -59,7 +59,7 @@ const LocationSection = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 flex-col sm:flex-row text-center sm:text-left">
+              <div className="flex items-center lg:items-start gap-4 flex-col lg:flex-row text-center lg:text-left">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-6 h-6 text-primary" />
                 </div>
