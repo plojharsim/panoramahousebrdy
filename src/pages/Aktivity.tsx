@@ -4,7 +4,6 @@ import React, { useState, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Bike,
   TreePine,
@@ -14,8 +13,6 @@ import {
   Coffee,
   Footprints,
   SearchX,
-  Search,
-  Filter,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroPanorama from "@/assets/hero-panorama.png";
@@ -117,7 +114,6 @@ const Aktivity = () => {
   const [activeType, setActiveType] = useState("all");
   const [activeWeather, setActiveWeather] = useState("all");
   const [activeDuration, setActiveDuration] = useState("all");
-  const [searchQuery, setSearchQuery] = useState("");
 
   const filteredActivities = useMemo(() => {
     return activities.filter((activity) => {
@@ -128,24 +124,17 @@ const Aktivity = () => {
         (activeWeather === "rainy" && activity.weather === "both");
       const matchDuration = activeDuration === "all" || activity.duration === activeDuration;
       
-      const searchLower = searchQuery.toLowerCase();
-      const matchSearch = 
-        activity.title.toLowerCase().includes(searchLower) || 
-        activity.description.toLowerCase().includes(searchLower) ||
-        activity.highlights.some(h => h.toLowerCase().includes(searchLower));
-      
-      return matchType && matchWeather && matchDuration && matchSearch;
+      return matchType && matchWeather && matchDuration;
     });
-  }, [activeType, activeWeather, activeDuration, searchQuery]);
+  }, [activeType, activeWeather, activeDuration]);
 
   const resetFilters = () => {
     setActiveType("all");
     setActiveWeather("all");
     setActiveDuration("all");
-    setSearchQuery("");
   };
 
-  const isFiltering = activeType !== "all" || activeWeather !== "all" || activeDuration !== "all" || searchQuery !== "";
+  const isFiltering = activeType !== "all" || activeWeather !== "all" || activeDuration !== "all";
 
   return (
     <>
@@ -184,68 +173,45 @@ const Aktivity = () => {
           </div>
         </section>
 
-        {/* Main Content with Sidebar */}
-        <section className="py-16 md:py-24 bg-background">
+        {/* Content */}
+        <section className="py-20 md:py-28 bg-background">
           <div className="container mx-auto px-4 md:px-8">
             <div className="grid lg:grid-cols-4 gap-12">
-              
-              {/* Sidebar with hidden scrollbar */}
+              {/* Sidebar Filters */}
               <aside className="lg:col-span-1">
-                <div className="lg:sticky lg:top-24 max-h-[calc(100vh-120px)] overflow-y-auto hide-scrollbar space-y-6">
-                  {/* Search Box */}
-                  <div className="bg-card rounded-2xl p-5 shadow-soft border border-border/50">
-                    <h3 className="font-display text-lg font-bold mb-3 flex items-center gap-2">
-                      <Search className="w-4 h-4 text-primary" /> Hledat
-                    </h3>
-                    <div className="relative">
-                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                      <Input 
-                        placeholder="Název..." 
-                        className="pl-9 h-10 text-sm"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Filters */}
-                  <div className="bg-card rounded-2xl p-5 shadow-soft border border-border/50">
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="font-display text-lg font-bold flex items-center gap-2">
-                        <Filter className="w-4 h-4 text-primary" /> Filtry
-                      </h3>
-                      {isFiltering && (
-                        <button 
-                          onClick={resetFilters}
-                          className="text-[10px] text-primary hover:underline font-bold uppercase tracking-tighter"
-                        >
-                          Smazat
-                        </button>
-                      )}
-                    </div>
-                    
-                    <ActivityFilter 
-                      activeType={activeType} 
-                      setActiveType={setActiveType}
-                      activeWeather={activeWeather}
-                      setActiveWeather={setActiveWeather}
-                      activeDuration={activeDuration}
-                      setActiveDuration={setActiveDuration}
-                    />
-                  </div>
+                <div className="sticky top-24">
+                  <h2 className="font-display text-2xl font-bold mb-6 text-foreground">Filtrování</h2>
+                  <ActivityFilter 
+                    activeType={activeType} 
+                    setActiveType={setActiveType}
+                    activeWeather={activeWeather}
+                    setActiveWeather={setActiveWeather}
+                    activeDuration={activeDuration}
+                    setActiveDuration={setActiveDuration}
+                  />
                 </div>
               </aside>
 
-              {/* Grid of Results */}
+              {/* Activities Grid */}
               <div className="lg:col-span-3">
-                <div className="mb-8 flex items-center justify-between">
+                <div className="flex justify-between items-center mb-8">
                   <p className="text-muted-foreground">
-                    Nalezeno <span className="font-bold text-primary">{filteredActivities.length}</span> {filteredActivities.length === 1 ? 'aktivita' : filteredActivities.length < 5 && filteredActivities.length > 0 ? 'aktivity' : 'aktivity'}
+                    Nalezeno <span className="font-bold text-foreground">{filteredActivities.length}</span> aktivit
                   </p>
+                  {isFiltering && (
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      onClick={resetFilters}
+                      className="text-primary hover:text-primary-light"
+                    >
+                      Zrušit filtry
+                    </Button>
+                  )}
                 </div>
 
                 {filteredActivities.length > 0 ? (
-                  <div className="grid grid-cols-1 gap-6">
+                  <div className="grid grid-cols-1 gap-6 md:gap-8">
                     {filteredActivities.map((activity, index) => (
                       <ActivityCard 
                         key={activity.id} 
@@ -255,13 +221,13 @@ const Aktivity = () => {
                     ))}
                   </div>
                 ) : (
-                  <div className="text-center py-20 bg-muted/20 rounded-3xl border-2 border-dashed border-border/50">
+                  <div className="text-center py-20 bg-muted/30 rounded-3xl border-2 border-dashed border-border">
                     <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
                       <SearchX className="w-8 h-8 text-muted-foreground" />
                     </div>
-                    <h3 className="text-xl font-display font-bold mb-2">Nic jsme nenašli</h3>
-                    <p className="text-muted-foreground mb-6">Zkuste upravit hledaný výraz nebo filtry.</p>
-                    <Button onClick={resetFilters} variant="nature">
+                    <h3 className="text-xl font-display font-bold mb-2">Žádné aktivity nenalezeny</h3>
+                    <p className="text-muted-foreground mb-6">Zkuste změnit nastavení filtrů pro více výsledků.</p>
+                    <Button onClick={resetFilters}>
                       Zobrazit vše
                     </Button>
                   </div>
@@ -272,18 +238,18 @@ const Aktivity = () => {
         </section>
 
         {/* CTA */}
-        <section className="py-20 bg-secondary">
+        <section className="py-16 md:py-20 bg-secondary">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
                 Chcete vědět víc?
               </h2>
-              <p className="text-muted-foreground text-xl mb-10">
+              <p className="text-muted-foreground text-lg mb-8">
                 Při příjezdu vám rádi poradíme s dalšími tipy na míru vašim zájmům. Brdy známe jako své boty!
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/">
-                  <Button variant="outline" size="xl">
+                  <Button variant="outline" size="lg">
                     Zpět na úvod
                   </Button>
                 </Link>
@@ -292,7 +258,7 @@ const Aktivity = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button variant="accent" size="xl">
+                  <Button variant="accent" size="lg">
                     Rezervovat pobyt
                   </Button>
                 </a>
