@@ -189,30 +189,32 @@ const Aktivity = () => {
             <div className="grid lg:grid-cols-4 gap-12">
               {/* Sidebar Filters */}
               <aside className="lg:col-span-1">
-                <div className="sticky top-24 space-y-8">
-                  <div className="space-y-4">
-                    <h2 className="font-display text-2xl font-bold text-foreground">Vyhledávání</h2>
-                    <div className="relative">
-                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                      <Input 
-                        placeholder="Hledat aktivitu..." 
-                        className="pl-10"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                <div className="lg:sticky lg:top-24 lg:max-h-[calc(100vh-120px)] lg:overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-muted">
+                  <div className="space-y-8 pb-10">
+                    <div className="space-y-4">
+                      <h2 className="font-display text-2xl font-bold text-foreground">Vyhledávání</h2>
+                      <div className="relative">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                        <Input 
+                          placeholder="Hledat aktivitu..." 
+                          className="pl-10"
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <h2 className="font-display text-2xl font-bold text-foreground">Filtrování</h2>
+                      <ActivityFilter 
+                        activeType={activeType} 
+                        setActiveType={setActiveType}
+                        activeWeather={activeWeather}
+                        setActiveWeather={setActiveWeather}
+                        activeDuration={activeDuration}
+                        setActiveDuration={setActiveDuration}
                       />
                     </div>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <h2 className="font-display text-2xl font-bold text-foreground">Filtrování</h2>
-                    <ActivityFilter 
-                      activeType={activeType} 
-                      setActiveType={setActiveType}
-                      activeWeather={activeWeather}
-                      setActiveWeather={setActiveWeather}
-                      activeDuration={activeDuration}
-                      setActiveDuration={setActiveDuration}
-                    />
                   </div>
                 </div>
               </aside>
