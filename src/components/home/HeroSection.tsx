@@ -43,7 +43,7 @@ const HeroSection = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button variant="hero" size="xl">
+              <Button variant="hero" size="xl" className="w-full sm:w-auto">
                 Rezervovat pobyt
               </Button>
             </a>
@@ -51,6 +51,7 @@ const HeroSection = () => {
               variant="heroOutline"
               size="xl"
               onClick={scrollToContent}
+              className="w-full sm:w-auto"
             >
               Prozkoumat
             </Button>

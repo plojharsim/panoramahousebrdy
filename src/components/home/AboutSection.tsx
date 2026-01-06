@@ -53,13 +53,13 @@ const AboutSection = () => {
               className="group bg-card rounded-2xl p-6 md:p-8 shadow-soft hover:shadow-card transition-all duration-300 hover:-translate-y-1"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary group-hover:scale-110 transition-all duration-300 mx-auto md:mx-0">
                 <feature.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
               </div>
-              <h3 className="font-display text-xl font-semibold text-foreground mb-3">
+              <h3 className="font-display text-xl font-semibold text-foreground mb-3 text-center md:text-left">
                 {feature.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed text-center md:text-left">
                 {feature.description}
               </p>
             </div>

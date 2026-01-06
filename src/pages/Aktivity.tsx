@@ -101,7 +101,7 @@ const Aktivity = () => {
           </div>
 
           <div className="container mx-auto px-4 md:px-8 relative z-10">
-            <div className="max-w-3xl">
+            <div className="max-w-3xl text-center">
               <p className="text-sunrise font-medium tracking-widest uppercase mb-4 animate-fade-up opacity-0 delay-100">
                 Zážitky a dobrodružství
               </p>
@@ -127,7 +127,7 @@ const Aktivity = () => {
                   className="group bg-card rounded-2xl p-6 md:p-8 shadow-soft hover:shadow-elevated transition-all duration-500 hover:-translate-y-1 border border-border/50"
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
-                  <div className="flex items-start gap-5">
+                  <div className="flex flex-col sm:flex-row items-start gap-5">
                     <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
                       <activity.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
                     </div>
@@ -138,7 +138,7 @@ const Aktivity = () => {
                       <p className="text-muted-foreground leading-relaxed mb-4">
                         {activity.description}
                       </p>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
                         {activity.highlights.map((highlight) => (
                           <span
                             key={highlight}

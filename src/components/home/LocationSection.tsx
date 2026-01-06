@@ -20,7 +20,7 @@ const LocationSection = () => {
           </div>
 
           {/* Content */}
-          <div className="order-1 lg:order-2">
+          <div className="order-1 lg:order-2 text-center lg:text-left">
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
               Kde nás <span className="text-primary">najdete</span>
             </h2>
@@ -31,7 +31,7 @@ const LocationSection = () => {
             </p>
 
             <div className="space-y-6 mb-8">
-              <div className="flex items-start gap-4">
+              <div className="flex items-start gap-4 flex-col sm:flex-row text-center sm:text-left">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <Car className="w-6 h-6 text-primary" />
                 </div>
@@ -45,7 +45,7 @@ const LocationSection = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
+              <div className="flex items-start gap-4 flex-col sm:flex-row text-center sm:text-left">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <Clock className="w-6 h-6 text-primary" />
                 </div>
@@ -59,7 +59,7 @@ const LocationSection = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
+              <div className="flex items-start gap-4 flex-col sm:flex-row text-center sm:text-left">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-6 h-6 text-primary" />
                 </div>
@@ -74,11 +74,13 @@ const LocationSection = () => {
               </div>
             </div>
 
-            <Link to="/aktivity">
-              <Button variant="nature" size="lg">
-                Objevte aktivity v okolí
-              </Button>
-            </Link>
+            <div className="flex justify-center lg:justify-start">
+              <Link to="/aktivity">
+                <Button variant="nature" size="lg">
+                  Objevte aktivity v okolí
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
