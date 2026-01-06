@@ -26,7 +26,7 @@ const activities = [
     icon: Bike,
     title: "Cyklistika",
     description:
-      "Terén Brd je ideální pro horská kola i silniční cyklistiku. Nově vybudované cyklotrasy vás provedou nejkrásnějšími místy regionu.",
+      "Terén Brd is ideální pro horská kola i silniční cyklistiku. Nově vybudované cyklotrasy vás provedou nejkrásnějšími místy regionu.",
     highlights: ["MTB trasy", "Rodinné cyklotrasy", "E-bike půjčovny"],
   },
   {
@@ -77,10 +77,10 @@ const Aktivity = () => {
   return (
     <>
       <Helmet>
-        <title>Aktivity v okolí | Panorama House Brdy</title>
+        <title>Aktivity v okolí | Panorama house Brdy</title>
         <meta
           name="description"
-          content="Objevte aktivity a výlety v okolí Panorama House Brdy. Turistika, cyklistika, rozhledny, příroda CHKO Brdy a další atrakce jen pár minut od ubytování."
+          content="Objevte aktivity a výlety v okolí Panorama house Brdy. Turistika, cyklistika, rozhledny, příroda CHKO Brdy a další atrakce jen pár minut od ubytování."
         />
         <meta
           name="keywords"
@@ -101,7 +101,7 @@ const Aktivity = () => {
           </div>
 
           <div className="container mx-auto px-4 md:px-8 relative z-10">
-            <div className="max-w-3xl text-center">
+            <div className="max-w-3xl mx-auto text-center">
               <p className="text-sunrise font-medium tracking-widest uppercase mb-4 animate-fade-up opacity-0 delay-100">
                 Zážitky a dobrodružství
               </p>
