@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mountain, MapPin, Mail, Phone } from "lucide-react";
+import { Mountain, MapPin, Mail, Phone } from "lucide-center";
 
 const Footer = () => {
   return (
@@ -11,7 +11,7 @@ const Footer = () => {
             <Link to="/" className="flex items-center gap-2 mb-4 justify-center md:justify-start">
               <Mountain className="w-8 h-8" />
               <span className="font-display text-2xl font-semibold">
-                Panorama House Brdy
+                Panorama house Brdy
               </span>
             </Link>
             <p className="text-primary-foreground/80 leading-relaxed text-center md:text-left">
@@ -89,7 +89,7 @@ const Footer = () => {
 
         <div className="border-t border-primary-foreground/20 mt-10 pt-8 text-center">
           <p className="text-primary-foreground/60 text-sm">
-            © {new Date().getFullYear()} Panorama House Brdy. Všechna práva
+            © {new Date().getFullYear()} Panorama house Brdy. Všechna práva
             vyhrazena.
           </p>
         </div>
