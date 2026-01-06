@@ -92,7 +92,7 @@ const ActivityFilter = ({
           {weatherOptions.map((opt) => (
             <Button
               key={opt.id}
-              variant={activeWeather === opt.id ? "accent" : "outline"}
+              variant={activeWeather === opt.id ? "nature" : "outline"}
               size="sm"
               onClick={() => setActiveWeather(opt.id)}
               className="rounded-full"
