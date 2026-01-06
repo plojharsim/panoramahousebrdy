@@ -12,6 +12,7 @@ import {
   Footprints,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import heroPanorama from "@/assets/hero-panorama.png";
 
 const activities = [
   {
@@ -89,11 +90,15 @@ const Aktivity = () => {
 
       <Layout>
         {/* Hero */}
-        <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-br from-forest via-forest-light to-mountain overflow-hidden">
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute inset-0 bg-[url('/placeholder.svg')] bg-cover bg-center" />
+        <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+          <div className="absolute inset-0">
+            <img
+              src={heroPanorama}
+              alt="Výhled na krajinu Brd"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-hero-overlay" />
           </div>
-          <div className="absolute inset-0 bg-hero-overlay" />
 
           <div className="container mx-auto px-4 md:px-8 relative z-10">
             <div className="max-w-3xl">

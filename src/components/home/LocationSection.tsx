@@ -1,21 +1,21 @@
 import { MapPin, Clock, Car } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import terraceDining from "@/assets/terrace-dining.png";
 
 const LocationSection = () => {
   return (
     <section className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Map placeholder */}
+          {/* Image */}
           <div className="relative rounded-2xl overflow-hidden shadow-elevated order-2 lg:order-1">
-            <div className="aspect-[4/3] bg-gradient-to-br from-muted to-secondary flex items-center justify-center">
-              <div className="text-center p-8">
-                <MapPin className="w-12 h-12 text-primary mx-auto mb-4" />
-                <p className="text-muted-foreground">
-                  Mapa bude doplněna s přesnou polohou
-                </p>
-              </div>
+            <div className="aspect-[4/3]">
+              <img
+                src={terraceDining}
+                alt="Terasa Panorama House Brdy s výhledem na údolí"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
 

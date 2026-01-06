@@ -1,14 +1,23 @@
-const GallerySection = () => {
-  // Placeholder for gallery images - will be replaced with actual photos
-  const galleryItems = [
-    { id: 1, label: "Výhled z terasy" },
-    { id: 2, label: "Obývací pokoj" },
-    { id: 3, label: "Ložnice" },
-    { id: 4, label: "Kuchyň" },
-    { id: 5, label: "Koupelna" },
-    { id: 6, label: "Okolní příroda" },
-  ];
+import terraceDining from "@/assets/terrace-dining.png";
+import terraceView from "@/assets/terrace-view.png";
+import livingRoom from "@/assets/living-room.png";
+import bedroom from "@/assets/bedroom.png";
+import bathroom from "@/assets/bathroom.png";
+import exteriorHouse from "@/assets/exterior-house.png";
+import terraceBbq from "@/assets/terrace-bbq.png";
+import gardenKids from "@/assets/garden-kids.png";
+import exteriorPergola from "@/assets/exterior-pergola.png";
 
+const galleryItems = [
+  { id: 1, image: terraceView, label: "Terasa s výhledem", featured: true },
+  { id: 2, image: livingRoom, label: "Obývací pokoj" },
+  { id: 3, image: bedroom, label: "Ložnice" },
+  { id: 4, image: bathroom, label: "Koupelna" },
+  { id: 5, image: terraceBbq, label: "Venkovní gril" },
+  { id: 6, image: gardenKids, label: "Zahrada pro děti" },
+];
+
+const GallerySection = () => {
   return (
     <section className="py-20 md:py-28 bg-secondary">
       <div className="container mx-auto px-4 md:px-8">
@@ -27,30 +36,62 @@ const GallerySection = () => {
           {galleryItems.map((item, index) => (
             <div
               key={item.id}
-              className={`group relative overflow-hidden rounded-2xl ${
+              className={`group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elevated transition-all duration-500 ${
                 index === 0 ? "sm:col-span-2 sm:row-span-2" : ""
               }`}
             >
-              {/* Placeholder - will be replaced with actual images */}
               <div
-                className={`bg-gradient-to-br from-forest/20 to-mountain/30 ${
-                  index === 0 ? "aspect-square sm:aspect-auto sm:h-full min-h-[300px]" : "aspect-[4/3]"
-                } flex items-center justify-center`}
+                className={`${
+                  index === 0 ? "aspect-square sm:aspect-auto sm:h-full min-h-[300px] lg:min-h-[500px]" : "aspect-[4/3]"
+                }`}
               >
-                <div className="absolute inset-0 bg-[url('/placeholder.svg')] bg-cover bg-center opacity-50" />
-                <span className="relative z-10 text-foreground/50 font-medium text-sm bg-background/50 px-4 py-2 rounded-lg">
-                  {item.label}
-                </span>
+                <img
+                  src={item.image}
+                  alt={item.label}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
               </div>
 
               {/* Hover overlay */}
-              <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-primary-foreground font-display text-xl font-semibold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+              <div className="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                <span className="text-primary-foreground font-display text-xl font-semibold p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                   {item.label}
                 </span>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Additional exterior images */}
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elevated transition-all duration-500">
+            <div className="aspect-[16/10]">
+              <img
+                src={exteriorHouse}
+                alt="Exteriér domu"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+            <div className="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+              <span className="text-primary-foreground font-display text-xl font-semibold p-6">
+                Exteriér domu
+              </span>
+            </div>
+          </div>
+          <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elevated transition-all duration-500">
+            <div className="aspect-[16/10]">
+              <img
+                src={exteriorPergola}
+                alt="Pergola a terasa"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+            <div className="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+              <span className="text-primary-foreground font-display text-xl font-semibold p-6">
+                Pergola a terasa
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
