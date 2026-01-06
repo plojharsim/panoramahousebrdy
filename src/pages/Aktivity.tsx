@@ -1,3 +1,6 @@
+"use client";
+
+import React, { useState, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -10,81 +13,127 @@ import {
   Castle,
   Coffee,
   Footprints,
+  SearchX,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroPanorama from "@/assets/hero-panorama.png";
+import ActivityFilter from "@/components/activities/ActivityFilter";
+import ActivityCard, { Activity } from "@/components/activities/ActivityCard";
 
-const activities = [
+const activities: Activity[] = [
   {
+    id: "1",
     icon: Footprints,
-    title: "Pěší turistika",
+    title: "Pěší turistika na Tok",
+    type: "turistika",
+    weather: "sunny",
+    duration: "long",
     description:
-      "Brdy nabízejí desítky kilometrů značených turistických tras. Objevte Tok, nejvyšší vrchol Brd, nebo se projděte kolem bývalého vojenského prostoru.",
-    highlights: ["Tok (865 m n. m.)", "Hřebeny Brd", "Naučné stezky"],
+      "Výšlap na nejvyšší vrchol Brd. Objevte Tok (865 m n. m.) a kochejte se výhledy z vřesovišť bývalého vojenského prostoru.",
+    highlights: ["Tok (865 m n. m.)", "Hřebeny Brd", "Vřesoviště"],
   },
   {
+    id: "2",
     icon: Bike,
-    title: "Cyklistika",
+    title: "Padrťské rybníky na kole",
+    type: "cyklistika",
+    weather: "sunny",
+    duration: "long",
     description:
-      "Terén Brd is ideální pro horská kola i silniční cyklistiku. Nově vybudované cyklotrasy vás provedou nejkrásnějšími místy regionu.",
-    highlights: ["MTB trasy", "Rodinné cyklotrasy", "E-bike půjčovny"],
+      "Nádherná cyklotrasa k unikátním Padrťským rybníkům. Rovinatý terén vhodný i pro rodiny, s dechberoucí přírodou.",
+    highlights: ["Padrťské rybníky", "Plochá dráha", "Nezničená příroda"],
   },
   {
-    icon: Mountain,
-    title: "Rozhledny a vyhlídky",
-    description:
-      "Region je poseté vyhlídkami a rozhlednami. Z každé z nich se otevírá jiný pohled na kopcovitou krajinu středních Čech.",
-    highlights: ["Rozhledna Praha", "Vyhlídka Kočka", "Svatá Hora"],
-  },
-  {
-    icon: TreePine,
-    title: "Poznávání přírody",
-    description:
-      "CHKO Brdy je domovem vzácných druhů rostlin a živočichů. Vydejte se na průzkum lesů, mokřadů a luk s bohatou biodiverzitou.",
-    highlights: ["CHKO Brdy", "Ptačí oblast", "Vzácné orchideje"],
-  },
-  {
-    icon: Camera,
-    title: "Fotografické výlety",
-    description:
-      "Malebná krajina Brd je rájem pro fotografy. Východy a západy slunce nad údolím nabízejí nezapomenutelné scenérie.",
-    highlights: ["Mlžná údolí", "Hvězdná obloha", "Wildlife fotografie"],
-  },
-  {
-    icon: Waves,
-    title: "Vodní aktivity",
-    description:
-      "V okolí najdete několik koupacích rybníků a vodních nádrží ideálních pro letní osvěžení a relaxaci u vody.",
-    highlights: ["Pilský rybník", "Láz", "Slapská přehrada"],
-  },
-  {
+    id: "3",
     icon: Castle,
-    title: "Historické památky",
+    title: "Svatá Hora v Příbrami",
+    type: "kultura",
+    weather: "both",
+    duration: "short",
     description:
-      "Region je bohatý na historii. Navštivte zámky, hrady a muzea, které vyprávějí příběhy zdejšího kraje.",
-    highlights: ["Hornické muzeum", "Zámek Dobříš", "Svatá Hora"],
+      "Navštivte významné barokní poutní místo. Unikátní komplex s ambity a bazilikou tyčící se nad městem Příbram.",
+    highlights: ["Barokní architektura", "Poutní místo", "Výhled na Příbram"],
   },
   {
-    icon: Coffee,
-    title: "Gastronomie a relax",
+    id: "4",
+    icon: Castle,
+    title: "Hornické muzeum Příbram",
+    type: "kultura",
+    weather: "both",
+    duration: "medium",
     description:
-      "Vychutnejte si lokální kuchyni v útulných restauracích a hospůdkách. Nebo si dopřejte wellness a relaxaci.",
-    highlights: ["Lokální restaurace", "Pivovary", "Wellness centra"],
+      "Největší hornické muzeum v ČR. Prohlídky podzemí, jízda důlním vláčkem a historické parní stroje.",
+    highlights: ["Podzemní štoly", "Důlní vláček", "Historie těžby"],
+  },
+  {
+    id: "5",
+    icon: Coffee,
+    title: "Pivovar Podlesí",
+    type: "relax",
+    weather: "both",
+    duration: "short",
+    description:
+      "Místní minipivovar s výbornou kuchyní a poctivým pivem. Ideální zastávka po výletě v Brdech.",
+    highlights: ["Lokální pivo", "Tradiční kuchyně", "Terasa"],
+  },
+  {
+    id: "6",
+    icon: TreePine,
+    title: "Procházka lesy u Oseče",
+    type: "turistika",
+    weather: "both",
+    duration: "short",
+    description:
+      "Klidná procházka hned za domem. Lesní cesty plné hub a borůvek v sezóně, ideální pro odpolední relaxaci.",
+    highlights: ["Klid u domu", "Houbaření", "Čistý vzduch"],
+  },
+  {
+    id: "7",
+    icon: Camera,
+    title: "Vyhlídka Kočka",
+    type: "turistika",
+    weather: "sunny",
+    duration: "medium",
+    description:
+      "Fotogenická vyhlídka v centrálních Brdech nabízející pohled na rozlehlé lesy a kopce. Skvělé místo pro západ slunce.",
+    highlights: ["Panoramatický výhled", "Fotospot", "Divoká příroda"],
+  },
+  {
+    id: "8",
+    icon: Waves,
+    title: "Pilská nádrž",
+    type: "relax",
+    weather: "sunny",
+    duration: "medium",
+    description:
+      "Klidná vodní nádrž uprostřed lesů. Ideální pro procházku kolem břehu nebo tiché rozjímání u vody.",
+    highlights: ["Lesní jezero", "Klidná zóna", "Naučná stezka"],
   },
 ];
 
 const Aktivity = () => {
+  const [activeType, setActiveType] = useState("all");
+  const [activeWeather, setActiveWeather] = useState("all");
+
+  const filteredActivities = useMemo(() => {
+    return activities.filter((activity) => {
+      const matchType = activeType === "all" || activity.type === activeType;
+      const matchWeather = 
+        activeWeather === "all" || 
+        (activeWeather === "sunny" && activity.weather === "sunny") ||
+        (activeWeather === "rainy" && activity.weather === "both");
+      
+      return matchType && matchWeather;
+    });
+  }, [activeType, activeWeather]);
+
   return (
     <>
       <Helmet>
         <title>Aktivity v okolí | Panorama house Brdy</title>
         <meta
           name="description"
-          content="Objevte aktivity a výlety v okolí Panorama house Brdy. Turistika, cyklistika, rozhledny, příroda CHKO Brdy a další atrakce jen pár minut od ubytování."
-        />
-        <meta
-          name="keywords"
-          content="aktivity Brdy, výlety Brdy, turistika Brdy, cyklotrasy Brdy, CHKO Brdy, co dělat v Brdech"
+          content="Objevte aktivity a výlety v okolí Panorama house Brdy. Filtrujte výlety podle počasí, náročnosti a typu."
         />
       </Helmet>
 
@@ -103,71 +152,96 @@ const Aktivity = () => {
           <div className="container mx-auto px-4 md:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <p className="text-sunrise font-medium tracking-widest uppercase mb-4 animate-fade-up opacity-0 delay-100">
-                Zážitky a dobrodružství
+                Zážitky na míru
               </p>
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 animate-fade-up opacity-0 delay-200">
-                Aktivity v okolí
+                Co podniknout v okolí?
               </h1>
               <p className="text-lg md:text-xl text-primary-foreground/90 leading-relaxed animate-fade-up opacity-0 delay-300">
-                Brdy a jejich okolí nabízejí nepřeberné množství aktivit pro
-                milovníky přírody, sportu i historie. Ať už preferujete pěší
-                túry, cyklistiku nebo klidnou procházku, najdete zde to pravé.
+                Naplánujte si svůj pobyt podle chuti. Vyberte si aktivitu, která odpovídá vašemu stylu, času i aktuálnímu počasí.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Activities Grid */}
+        {/* Content */}
         <section className="py-20 md:py-28 bg-background">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-              {activities.map((activity, index) => (
-                <div
-                  key={activity.title}
-                  className="group bg-card rounded-2xl p-6 md:p-8 shadow-soft hover:shadow-elevated transition-all duration-500 hover:-translate-y-1 border border-border/50"
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
-                  <div className="flex flex-col sm:flex-row items-start gap-5">
-                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                      <activity.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
-                    </div>
-                    <div className="flex-grow">
-                      <h2 className="font-display text-xl md:text-2xl font-semibold text-foreground mb-3">
-                        {activity.title}
-                      </h2>
-                      <p className="text-muted-foreground leading-relaxed mb-4">
-                        {activity.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
-                        {activity.highlights.map((highlight) => (
-                          <span
-                            key={highlight}
-                            className="inline-flex items-center px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-sm font-medium"
-                          >
-                            {highlight}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+            <div className="grid lg:grid-cols-4 gap-12">
+              {/* Sidebar Filters */}
+              <aside className="lg:col-span-1">
+                <div className="sticky top-24">
+                  <h2 className="font-display text-2xl font-bold mb-6 text-foreground">Filtrování</h2>
+                  <ActivityFilter 
+                    activeType={activeType} 
+                    setActiveType={setActiveType}
+                    activeWeather={activeWeather}
+                    setActiveWeather={setActiveWeather}
+                  />
+                  
+                  <div className="hidden lg:block p-6 rounded-2xl bg-secondary border border-border mt-8">
+                    <h4 className="font-display text-lg font-bold mb-3">Náš tip</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Po náročném výšlapu na Tok doporučujeme návštěvu Pivovaru Podlesí pro doplnění sil!
+                    </p>
                   </div>
                 </div>
-              ))}
+              </aside>
+
+              {/* Activities Grid */}
+              <div className="lg:col-span-3">
+                <div className="flex justify-between items-center mb-8">
+                  <p className="text-muted-foreground">
+                    Nalezeno <span className="font-bold text-foreground">{filteredActivities.length}</span> aktivit
+                  </p>
+                  {(activeType !== "all" || activeWeather !== "all") && (
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      onClick={() => { setActiveType("all"); setActiveWeather("all"); }}
+                      className="text-primary hover:text-primary-light"
+                    >
+                      Zrušit filtry
+                    </Button>
+                  )}
+                </div>
+
+                {filteredActivities.length > 0 ? (
+                  <div className="grid grid-cols-1 gap-6 md:gap-8">
+                    {filteredActivities.map((activity, index) => (
+                      <ActivityCard 
+                        key={activity.id} 
+                        activity={activity} 
+                        index={index} 
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-20 bg-muted/30 rounded-3xl border-2 border-dashed border-border">
+                    <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+                      <SearchX className="w-8 h-8 text-muted-foreground" />
+                    </div>
+                    <h3 className="text-xl font-display font-bold mb-2">Žádné aktivity nenalezeny</h3>
+                    <p className="text-muted-foreground mb-6">Zkuste změnit nastavení filtrů pro více výsledků.</p>
+                    <Button onClick={() => { setActiveType("all"); setActiveWeather("all"); }}>
+                      Zobrazit vše
+                    </Button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Tips section */}
+        {/* CTA */}
         <section className="py-16 md:py-20 bg-secondary">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Tipy pro váš pobyt
+                Chcete vědět víc?
               </h2>
               <p className="text-muted-foreground text-lg mb-8">
-                Brdy jsou ideální celoročně. Na jaře a na podzim si užijete
-                barevnou přírodu, v létě osvěžení u vody a v zimě zasněženou
-                krajinu. Doporučujeme mít s sebou pohodlnou obuv a
-                fotoaparát – budete ho potřebovat!
+                Při příjezdu vám rádi poradíme s dalšími tipy na míru vašim zájmům. Brdy známe jako své boty!
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/">
