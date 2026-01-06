@@ -62,7 +62,7 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 mt-0.5 text-sunrise" />
                 <span className="text-primary-foreground/80">
-                  Oseč 58, 262 72 Březnice
+                  Oseč 58, 261 01 Příbram
                 </span>
               </li>
               <li className="flex items-center gap-3">
