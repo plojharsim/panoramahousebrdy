@@ -4,6 +4,7 @@ import React, { useState, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Bike,
   TreePine,
@@ -13,6 +14,7 @@ import {
   Coffee,
   Footprints,
   SearchX,
+  Search,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroPanorama from "@/assets/hero-panorama.png";
@@ -114,6 +116,7 @@ const Aktivity = () => {
   const [activeType, setActiveType] = useState("all");
   const [activeWeather, setActiveWeather] = useState("all");
   const [activeDuration, setActiveDuration] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const filteredActivities = useMemo(() => {
     return activities.filter((activity) => {
@@ -124,17 +127,24 @@ const Aktivity = () => {
         (activeWeather === "rainy" && activity.weather === "both");
       const matchDuration = activeDuration === "all" || activity.duration === activeDuration;
       
-      return matchType && matchWeather && matchDuration;
+      const searchLower = searchQuery.toLowerCase();
+      const matchSearch = 
+        activity.title.toLowerCase().includes(searchLower) || 
+        activity.description.toLowerCase().includes(searchLower) ||
+        activity.highlights.some(h => h.toLowerCase().includes(searchLower));
+      
+      return matchType && matchWeather && matchDuration && matchSearch;
     });
-  }, [activeType, activeWeather, activeDuration]);
+  }, [activeType, activeWeather, activeDuration, searchQuery]);
 
   const resetFilters = () => {
     setActiveType("all");
     setActiveWeather("all");
     setActiveDuration("all");
+    setSearchQuery("");
   };
 
-  const isFiltering = activeType !== "all" || activeWeather !== "all" || activeDuration !== "all";
+  const isFiltering = activeType !== "all" || activeWeather !== "all" || activeDuration !== "all" || searchQuery !== "";
 
   return (
     <>
@@ -179,16 +189,31 @@ const Aktivity = () => {
             <div className="grid lg:grid-cols-4 gap-12">
               {/* Sidebar Filters */}
               <aside className="lg:col-span-1">
-                <div className="sticky top-24">
-                  <h2 className="font-display text-2xl font-bold mb-6 text-foreground">Filtrování</h2>
-                  <ActivityFilter 
-                    activeType={activeType} 
-                    setActiveType={setActiveType}
-                    activeWeather={activeWeather}
-                    setActiveWeather={setActiveWeather}
-                    activeDuration={activeDuration}
-                    setActiveDuration={setActiveDuration}
-                  />
+                <div className="sticky top-24 space-y-8">
+                  <div className="space-y-4">
+                    <h2 className="font-display text-2xl font-bold text-foreground">Vyhledávání</h2>
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                      <Input 
+                        placeholder="Hledat aktivitu..." 
+                        className="pl-10"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h2 className="font-display text-2xl font-bold text-foreground">Filtrování</h2>
+                    <ActivityFilter 
+                      activeType={activeType} 
+                      setActiveType={setActiveType}
+                      activeWeather={activeWeather}
+                      setActiveWeather={setActiveWeather}
+                      activeDuration={activeDuration}
+                      setActiveDuration={setActiveDuration}
+                    />
+                  </div>
                 </div>
               </aside>
 
@@ -205,7 +230,7 @@ const Aktivity = () => {
                       onClick={resetFilters}
                       className="text-primary hover:text-primary-light"
                     >
-                      Zrušit filtry
+                      Zrušit vše
                     </Button>
                   )}
                 </div>
@@ -226,7 +251,7 @@ const Aktivity = () => {
                       <SearchX className="w-8 h-8 text-muted-foreground" />
                     </div>
                     <h3 className="text-xl font-display font-bold mb-2">Žádné aktivity nenalezeny</h3>
-                    <p className="text-muted-foreground mb-6">Zkuste změnit nastavení filtrů pro více výsledků.</p>
+                    <p className="text-muted-foreground mb-6">Zkuste změnit hledaný výraz nebo filtry.</p>
                     <Button onClick={resetFilters}>
                       Zobrazit vše
                     </Button>
