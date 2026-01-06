@@ -27,7 +27,7 @@ const LocationSection = () => {
             <p className="text-muted-foreground text-lg leading-relaxed mb-8">
               Panorama House Brdy se nachází v malebné lokalitě Brdské
               vrchoviny, jen kousek od města Příbram. Snadno dostupné autem,
-              přesto daleko od hluku a shonu velkoměsta.
+              přesto daleko od hluku a shonu města.
             </p>
 
             <div className="space-y-6 mb-8 flex flex-col items-center lg:items-start">
@@ -40,7 +40,7 @@ const LocationSection = () => {
                     10 minut od Příbrami
                   </h3>
                   <p className="text-muted-foreground">
-                    Snadný přístup po kvalitní silnici, parkování přímo u domu.
+                    Snadný přístup po kvalitní silnici, soukromé parkování přímo u domu.
                   </p>
                 </div>
               </div>
