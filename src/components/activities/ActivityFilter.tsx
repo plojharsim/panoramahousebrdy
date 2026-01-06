@@ -3,6 +3,12 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { CloudRain, Sun, Clock, Map, Bike, Castle, Coffee, Timer } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 interface FilterProps {
   activeType: string;
@@ -43,67 +49,79 @@ const ActivityFilter = ({
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-      <div className="space-y-4">
-        <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground flex items-center gap-2">
-          <Map className="w-4 h-4" /> Typ aktivity
-        </h3>
-        <div className="flex flex-wrap gap-2">
-          {types.map((type) => (
-            <Button
-              key={type.id}
-              variant={activeType === type.id ? "nature" : "outline"}
-              size="sm"
-              onClick={() => setActiveType(type.id)}
-              className="rounded-full h-9 px-4"
-            >
-              <type.icon className="w-3.5 h-3.5 mr-2" />
-              {type.label}
-            </Button>
-          ))}
-        </div>
-      </div>
+    <Accordion type="multiple" defaultValue={["type", "duration"]} className="w-full">
+      {/* Typ aktivity */}
+      <AccordionItem value="type" className="border-none">
+        <AccordionTrigger className="hover:no-underline py-3 text-sm font-bold uppercase tracking-widest text-muted-foreground/80">
+          <span className="flex items-center gap-2">
+            <Map className="w-4 h-4" /> Typ aktivity
+          </span>
+        </AccordionTrigger>
+        <AccordionContent className="pb-4">
+          <div className="flex flex-wrap gap-2">
+            {types.map((type) => (
+              <Button
+                key={type.id}
+                variant={activeType === type.id ? "nature" : "outline"}
+                size="sm"
+                onClick={() => setActiveType(type.id)}
+                className="rounded-full h-8 px-3 text-xs"
+              >
+                {type.label}
+              </Button>
+            ))}
+          </div>
+        </AccordionContent>
+      </AccordionItem>
 
-      <div className="space-y-4">
-        <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground flex items-center gap-2">
-          <Timer className="w-4 h-4" /> Časová náročnost
-        </h3>
-        <div className="flex flex-wrap gap-2">
-          {durations.map((dur) => (
-            <Button
-              key={dur.id}
-              variant={activeDuration === dur.id ? "nature" : "outline"}
-              size="sm"
-              onClick={() => setActiveDuration(dur.id)}
-              className="rounded-full h-9 px-4"
-            >
-              <dur.icon className="w-3.5 h-3.5 mr-2" />
-              {dur.label}
-            </Button>
-          ))}
-        </div>
-      </div>
+      {/* Časová náročnost */}
+      <AccordionItem value="duration" className="border-none">
+        <AccordionTrigger className="hover:no-underline py-3 text-sm font-bold uppercase tracking-widest text-muted-foreground/80">
+          <span className="flex items-center gap-2">
+            <Timer className="w-4 h-4" /> Náročnost
+          </span>
+        </AccordionTrigger>
+        <AccordionContent className="pb-4">
+          <div className="flex flex-wrap gap-2">
+            {durations.map((dur) => (
+              <Button
+                key={dur.id}
+                variant={activeDuration === dur.id ? "nature" : "outline"}
+                size="sm"
+                onClick={() => setActiveDuration(dur.id)}
+                className="rounded-full h-8 px-3 text-xs"
+              >
+                {dur.label}
+              </Button>
+            ))}
+          </div>
+        </AccordionContent>
+      </AccordionItem>
 
-      <div className="space-y-4">
-        <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground flex items-center gap-2">
-          <CloudRain className="w-4 h-4" /> Podle počasí
-        </h3>
-        <div className="flex flex-wrap gap-2">
-          {weatherOptions.map((opt) => (
-            <Button
-              key={opt.id}
-              variant={activeWeather === opt.id ? "nature" : "outline"}
-              size="sm"
-              onClick={() => setActiveWeather(opt.id)}
-              className="rounded-full h-9 px-4"
-            >
-              <opt.icon className="w-3.5 h-3.5 mr-2" />
-              {opt.label}
-            </Button>
-          ))}
-        </div>
-      </div>
-    </div>
+      {/* Počasí */}
+      <AccordionItem value="weather" className="border-none">
+        <AccordionTrigger className="hover:no-underline py-3 text-sm font-bold uppercase tracking-widest text-muted-foreground/80">
+          <span className="flex items-center gap-2">
+            <CloudRain className="w-4 h-4" /> Počasí
+          </span>
+        </AccordionTrigger>
+        <AccordionContent className="pb-4">
+          <div className="flex flex-wrap gap-2">
+            {weatherOptions.map((opt) => (
+              <Button
+                key={opt.id}
+                variant={activeWeather === opt.id ? "nature" : "outline"}
+                size="sm"
+                onClick={() => setActiveWeather(opt.id)}
+                className="rounded-full h-8 px-3 text-xs"
+              >
+                {opt.label}
+              </Button>
+            ))}
+          </div>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   );
 };
 
