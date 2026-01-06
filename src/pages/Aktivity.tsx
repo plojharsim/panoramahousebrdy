@@ -108,6 +108,50 @@ const activities: Activity[] = [
       "Klidná vodní nádrž uprostřed lesů. Ideální pro procházku kolem břehu nebo tiché rozjímání u vody.",
     highlights: ["Lesní jezero", "Klidná zóna", "Naučná stezka"],
   },
+  {
+    id: "9",
+    icon: Castle,
+    title: "Zřícenina hradu Valdek",
+    type: "kultura",
+    weather: "sunny",
+    duration: "medium",
+    description:
+      "Romantická zřícenina hradu ze 13. století ukrytá v hlubokých brdských lesích. Místo s tajemnou atmosférou.",
+    highlights: ["Historický hrad", "Lesní cesta", "Fotogenické místo"],
+  },
+  {
+    id: "10",
+    icon: Waves,
+    title: "Aquapark Příbram",
+    type: "relax",
+    weather: "both",
+    duration: "short",
+    description:
+      "Když venku prší, aquapark nabízí vnitřní bazén, vířivky a tobogány pro děti i dospělé.",
+    highlights: ["Vnitřní bazén", "Tobogány", "Sauna a wellness"],
+  },
+  {
+    id: "11",
+    icon: Bike,
+    title: "Brdská hřebenovka",
+    type: "cyklistika",
+    weather: "sunny",
+    duration: "long",
+    description:
+      "Náročnější trasa po hřebenech Brd s velkým převýšením a odměnou v podobě nekonečných výhledů.",
+    highlights: ["Hřebenová trasa", "Sportovní výkon", "Panoramata"],
+  },
+  {
+    id: "12",
+    icon: Castle,
+    title: "Památník Vojna Lešetice",
+    type: "kultura",
+    weather: "both",
+    duration: "medium",
+    description:
+      "Autenticky dochovaný vězeňský areál, unikátní v celém středoevropském prostoru. Expozice o komunistické perzekuci.",
+    highlights: ["Historická paměť", "Expozice", "Průvodce"],
+  },
 ];
 
 const Aktivity = () => {
