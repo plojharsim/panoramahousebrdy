@@ -44,7 +44,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="https://www.booking.com"
+                  href="https://www.booking.com/hotel/cz/panorama-house-brdy"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary-foreground/80 hover:text-sunrise transition-colors block"

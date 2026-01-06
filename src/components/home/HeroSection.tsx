@@ -39,7 +39,7 @@ const HeroSection = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up opacity-0 delay-400">
             <a
-              href="https://www.booking.com"
+              href="https://www.booking.com/hotel/cz/panorama-house-brdy"
               target="_blank"
               rel="noopener noreferrer"
             >

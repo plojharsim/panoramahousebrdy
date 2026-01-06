@@ -176,7 +176,7 @@ const Aktivity = () => {
                   </Button>
                 </Link>
                 <a
-                  href="https://www.booking.com"
+                  href="https://www.booking.com/hotel/cz/panorama-house-brdy"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

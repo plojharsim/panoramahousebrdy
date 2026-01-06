@@ -23,12 +23,12 @@ const BookingCTA = () => {
             Zarezervujte si svůj pobyt
           </h2>
           <p className="text-primary-foreground/80 text-lg mb-8 max-w-2xl mx-auto">
-            Udělejte si radost nezapomenutelným pobytem v Panorama House Brdy.
+            Udělejte si radost nezapomenutelným pobytem v Panorama house Brdy.
             Rezervujte snadno a bezpečně přes Booking.com.
           </p>
 
           <a
-            href="https://www.booking.com"
+            href="https://www.booking.com/hotel/cz/panorama-house-brdy"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block"
