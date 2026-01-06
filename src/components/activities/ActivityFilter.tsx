@@ -49,23 +49,23 @@ const ActivityFilter = ({
   ];
 
   return (
-    <Accordion type="multiple" defaultValue={["type", "duration"]} className="w-full">
+    <Accordion type="multiple" defaultValue={["type"]} className="w-full">
       {/* Typ aktivity */}
       <AccordionItem value="type" className="border-none">
-        <AccordionTrigger className="hover:no-underline py-3 text-sm font-bold uppercase tracking-widest text-muted-foreground/80">
+        <AccordionTrigger className="hover:no-underline py-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">
           <span className="flex items-center gap-2">
-            <Map className="w-4 h-4" /> Typ aktivity
+            <Map className="w-3 h-3" /> Typ aktivity
           </span>
         </AccordionTrigger>
-        <AccordionContent className="pb-4">
-          <div className="flex flex-wrap gap-2">
+        <AccordionContent className="pb-3">
+          <div className="flex flex-wrap gap-1.5">
             {types.map((type) => (
               <Button
                 key={type.id}
                 variant={activeType === type.id ? "nature" : "outline"}
                 size="sm"
                 onClick={() => setActiveType(type.id)}
-                className="rounded-full h-8 px-3 text-xs"
+                className="rounded-full h-7 px-2.5 text-[10px]"
               >
                 {type.label}
               </Button>
@@ -76,20 +76,20 @@ const ActivityFilter = ({
 
       {/* Časová náročnost */}
       <AccordionItem value="duration" className="border-none">
-        <AccordionTrigger className="hover:no-underline py-3 text-sm font-bold uppercase tracking-widest text-muted-foreground/80">
+        <AccordionTrigger className="hover:no-underline py-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">
           <span className="flex items-center gap-2">
-            <Timer className="w-4 h-4" /> Náročnost
+            <Timer className="w-3 h-3" /> Náročnost
           </span>
         </AccordionTrigger>
-        <AccordionContent className="pb-4">
-          <div className="flex flex-wrap gap-2">
+        <AccordionContent className="pb-3">
+          <div className="flex flex-wrap gap-1.5">
             {durations.map((dur) => (
               <Button
                 key={dur.id}
                 variant={activeDuration === dur.id ? "nature" : "outline"}
                 size="sm"
                 onClick={() => setActiveDuration(dur.id)}
-                className="rounded-full h-8 px-3 text-xs"
+                className="rounded-full h-7 px-2.5 text-[10px]"
               >
                 {dur.label}
               </Button>
@@ -100,20 +100,20 @@ const ActivityFilter = ({
 
       {/* Počasí */}
       <AccordionItem value="weather" className="border-none">
-        <AccordionTrigger className="hover:no-underline py-3 text-sm font-bold uppercase tracking-widest text-muted-foreground/80">
+        <AccordionTrigger className="hover:no-underline py-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">
           <span className="flex items-center gap-2">
-            <CloudRain className="w-4 h-4" /> Počasí
+            <CloudRain className="w-3 h-3" /> Počasí
           </span>
         </AccordionTrigger>
-        <AccordionContent className="pb-4">
-          <div className="flex flex-wrap gap-2">
+        <AccordionContent className="pb-3">
+          <div className="flex flex-wrap gap-1.5">
             {weatherOptions.map((opt) => (
               <Button
                 key={opt.id}
                 variant={activeWeather === opt.id ? "nature" : "outline"}
                 size="sm"
                 onClick={() => setActiveWeather(opt.id)}
-                className="rounded-full h-8 px-3 text-xs"
+                className="rounded-full h-7 px-2.5 text-[10px]"
               >
                 {opt.label}
               </Button>

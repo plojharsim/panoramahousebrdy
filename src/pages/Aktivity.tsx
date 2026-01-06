@@ -189,35 +189,35 @@ const Aktivity = () => {
           <div className="container mx-auto px-4 md:px-8">
             <div className="grid lg:grid-cols-4 gap-12">
               
-              {/* Sidebar */}
+              {/* Sidebar with hidden scrollbar */}
               <aside className="lg:col-span-1">
-                <div className="lg:sticky lg:top-24 space-y-8">
+                <div className="lg:sticky lg:top-24 max-h-[calc(100vh-120px)] overflow-y-auto hide-scrollbar space-y-6">
                   {/* Search Box */}
-                  <div className="bg-card rounded-2xl p-6 shadow-soft border border-border/50">
-                    <h3 className="font-display text-xl font-bold mb-4 flex items-center gap-2">
-                      <Search className="w-5 h-5 text-primary" /> Hledat
+                  <div className="bg-card rounded-2xl p-5 shadow-soft border border-border/50">
+                    <h3 className="font-display text-lg font-bold mb-3 flex items-center gap-2">
+                      <Search className="w-4 h-4 text-primary" /> Hledat
                     </h3>
                     <div className="relative">
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                       <Input 
-                        placeholder="Název, místo..." 
-                        className="pl-10 h-11"
+                        placeholder="Název..." 
+                        className="pl-9 h-10 text-sm"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                       />
                     </div>
                   </div>
 
-                  {/* Filters - Vertically optimized */}
-                  <div className="bg-card rounded-2xl p-6 shadow-soft border border-border/50">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="font-display text-xl font-bold flex items-center gap-2">
-                        <Filter className="w-5 h-5 text-primary" /> Filtry
+                  {/* Filters */}
+                  <div className="bg-card rounded-2xl p-5 shadow-soft border border-border/50">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="font-display text-lg font-bold flex items-center gap-2">
+                        <Filter className="w-4 h-4 text-primary" /> Filtry
                       </h3>
                       {isFiltering && (
                         <button 
                           onClick={resetFilters}
-                          className="text-xs text-primary hover:underline font-medium"
+                          className="text-[10px] text-primary hover:underline font-bold uppercase tracking-tighter"
                         >
                           Smazat
                         </button>
@@ -238,14 +238,14 @@ const Aktivity = () => {
 
               {/* Grid of Results */}
               <div className="lg:col-span-3">
-                <div className="mb-8">
-                  <p className="text-muted-foreground text-lg">
-                    Nalezeno <span className="font-bold text-primary">{filteredActivities.length}</span> {filteredActivities.length === 1 ? 'aktivita' : filteredActivities.length < 5 && filteredActivities.length > 0 ? 'aktivity' : 'aktivit'}
+                <div className="mb-8 flex items-center justify-between">
+                  <p className="text-muted-foreground">
+                    Nalezeno <span className="font-bold text-primary">{filteredActivities.length}</span> {filteredActivities.length === 1 ? 'aktivita' : filteredActivities.length < 5 && filteredActivities.length > 0 ? 'aktivity' : 'aktivity'}
                   </p>
                 </div>
 
                 {filteredActivities.length > 0 ? (
-                  <div className="grid grid-cols-1 gap-8">
+                  <div className="grid grid-cols-1 gap-6">
                     {filteredActivities.map((activity, index) => (
                       <ActivityCard 
                         key={activity.id} 
