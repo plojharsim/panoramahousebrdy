@@ -13,6 +13,7 @@ import {
   Coffee,
   Footprints,
   SearchX,
+  Landmark,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroPanorama from "@/assets/hero-panorama.png";
@@ -151,6 +152,50 @@ const activities: Activity[] = [
     description:
       "Autenticky dochovaný vězeňský areál, unikátní v celém středoevropském prostoru. Expozice o komunistické perzekuci.",
     highlights: ["Historická paměť", "Expozice", "Průvodce"],
+  },
+  {
+    id: "13",
+    icon: Footprints,
+    title: "Třemošná a Panská skála",
+    type: "turistika",
+    weather: "sunny",
+    duration: "medium",
+    description:
+      "Krásný okruh s výstupem na Třemošnou (778 m n. m.) a návštěvou skalního útvaru Panská skála s výhledy.",
+    highlights: ["Třemošná", "Panská skála", "Kruhový výhled"],
+  },
+  {
+    id: "14",
+    icon: Landmark,
+    title: "Zámek Dobříš",
+    type: "kultura",
+    weather: "both",
+    duration: "short",
+    description:
+      "Rokokový zámek s nádherným francouzským a anglickým parkem. Ideální pro krátký kulturní výlet.",
+    highlights: ["Rokokový zámek", "Francouzský park", "Zrcadlový sál"],
+  },
+  {
+    id: "15",
+    icon: Bike,
+    title: "Cyklostezka podél Litavky",
+    type: "cyklistika",
+    weather: "both",
+    duration: "short",
+    description:
+      "Pohodová, rovinatá cyklostezka vedoucí údolím řeky Litavky. Vhodná pro rodiny a nenáročné cyklisty.",
+    highlights: ["Rovinatý terén", "Řeka Litavka", "Rodinný výlet"],
+  },
+  {
+    id: "16",
+    icon: Camera,
+    title: "Rozhledna Třemšín",
+    type: "turistika",
+    weather: "sunny",
+    duration: "long",
+    description:
+      "Výšlap na Třemšín (827 m n. m.) s novou rozhlednou, která nabízí jeden z nejlepších výhledů na celou oblast Brd.",
+    highlights: ["Rozhledna", "Nejvyšší partie Brd", "Daleké výhledy"],
   },
 ];
 
